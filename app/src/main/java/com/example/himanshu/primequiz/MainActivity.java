@@ -16,9 +16,13 @@ public class MainActivity extends AppCompatActivity
     TextView Ques_Text,Correct_Text,InCorrect_Text,Correct_Text_Value,InCorrect_Text_Value;
     Button True_Button,False_Button,Next_Button;
 
-    public int evaluate(int n)
+    public int prime_check(int n)
     {
         int i;
+        if(n==1)
+        {
+            return -1;
+        }
         for(i=2;i<=Math.sqrt(n);i++)
         {
             if(n%i==0)
@@ -30,13 +34,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         Log.d("TAG","Pause");
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         Log.d("TAG","Resume");
     }
@@ -66,23 +72,23 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                String s[]=Ques_Text.getText().toString().split(" ");
-                if(evaluate(Integer.parseInt(s[1]))==1)
+                String temp_string[]=Ques_Text.getText().toString().split(" ");
+                if(prime_check(Integer.parseInt(temp_string[1]))==1)
                 {
-                    int i=Integer.parseInt(Correct_Text_Value.getText().toString());
-                    i++;
+                    int temp_value=Integer.parseInt(Correct_Text_Value.getText().toString());
+                    temp_value++;
                     Toast.makeText(MainActivity.this, "Correct Answer",
                             Toast.LENGTH_LONG).show();
-                    Correct_Text_Value.setText(Integer.toString(i));
+                    Correct_Text_Value.setText(Integer.toString(temp_value));
 
                 }
                 else
                 {
-                    int i=Integer.parseInt(InCorrect_Text_Value.getText().toString());
-                    i++;
+                    int temp_value=Integer.parseInt(InCorrect_Text_Value.getText().toString());
+                    temp_value++;
                     Toast.makeText(MainActivity.this, "Incorrect Answer",
                             Toast.LENGTH_LONG).show();
-                    InCorrect_Text_Value.setText(Integer.toString(i));
+                    InCorrect_Text_Value.setText(Integer.toString(temp_value));
                 }
                 True_Button.setEnabled(false);
                 False_Button.setEnabled(false);
@@ -94,22 +100,22 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                String s[]=Ques_Text.getText().toString().split(" ");
-                if(evaluate(Integer.parseInt(s[1]))==-1)
+                String temp_string[]=Ques_Text.getText().toString().split(" ");
+                if(prime_check(Integer.parseInt(temp_string[1]))==-1)
                 {
-                    int i=Integer.parseInt(Correct_Text_Value.getText().toString());
-                    i++;
+                    int temp_value=Integer.parseInt(Correct_Text_Value.getText().toString());
+                    temp_value++;
                     Toast.makeText(MainActivity.this, "Correct Answer",
                             Toast.LENGTH_LONG).show();
-                    Correct_Text_Value.setText(Integer.toString(i));
+                    Correct_Text_Value.setText(Integer.toString(temp_value));
                 }
                 else
                 {
-                    int i=Integer.parseInt(InCorrect_Text_Value.getText().toString());
-                    i++;
+                    int temp_value=Integer.parseInt(InCorrect_Text_Value.getText().toString());
+                    temp_value++;
                     Toast.makeText(MainActivity.this, "Incorrect Answer",
                             Toast.LENGTH_LONG).show();
-                    InCorrect_Text_Value.setText(Integer.toString(i));
+                    InCorrect_Text_Value.setText(Integer.toString(temp_value));
                 }
                 True_Button.setEnabled(false);
                 False_Button.setEnabled(false);
@@ -160,12 +166,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
     }
 
@@ -174,8 +182,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onSaveInstanceState(outState);
         Log.d("TAG","Save");
-        String s[]=Ques_Text.getText().toString().split(" ");
-        String sno=s[1];
+        String temp_string[]=Ques_Text.getText().toString().split(" ");
+        String sno=temp_string[1];
         outState.putString("Saved_Number",sno);
         outState.putString("Saved_Correct_Number",Correct_Text_Value.getText().toString());
         outState.putString("Saved_InCorrect_Number",InCorrect_Text_Value.getText().toString());
